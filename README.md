@@ -50,7 +50,7 @@ Entregar un archivo **PDF** que contenga:
 
 ---
 
-## 🚀 Entregable Final - Semana del **2 de abril de 2025**
+## 🚀 Entregable Final - Semana del **14 de septiembre de 2026**
 **Objetivo:** Convertir el sistema de recomendación en una **nueva app** dentro del proyecto.
 
 ### 📲 Requisitos de la App
