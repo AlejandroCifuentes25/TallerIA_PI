@@ -1,5 +1,6 @@
 import os
 import requests
+import base64
 from openai import OpenAI
 from django.core.management.base import BaseCommand
 from movie.models import Movie
@@ -10,7 +11,7 @@ class Command(BaseCommand):
 
     def handle(self, *args, **kwargs):
         # ✅ Load environment variables from the .env file
-        load_dotenv('../openAI.env')
+        load_dotenv('openAI.env')
 
         # ✅ Initialize the OpenAI client with the API key
         client = OpenAI(
@@ -57,14 +58,14 @@ class Command(BaseCommand):
             quality="auto",
             n=1,
         )
-        image_data = base64.b64decode(response.data[0].b64_json)
+        image_url = response.data[0].url
 
         # ✅ Prepare the filename and full save path
         image_filename = f"m_{movie_title}.png"
         image_path_full = os.path.join(save_folder, image_filename)
 
         # ✅ Download the image
-        image_response = requests.get(image_data)
+        image_response = requests.get(image_url)
         image_response.raise_for_status()
         with open(image_path_full, 'wb') as f:
             f.write(image_response.content)
